@@ -1,0 +1,3 @@
+com.curriculo.config.DatabaseConfig=org.springframework.stereotype.Component
+com.curriculo.controller.CurriculoController=org.springframework.stereotype.Component
+com.curriculo.service.PdfService=org.springframework.stereotype.Component

@@ -1,0 +1,64 @@
+# Configuração para Produção - MySQL
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/techflow_prod?useSSL=true&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:@#8520@#}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    
+    # Pool de conexões para produção
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      idle-timeout: 300000
+      max-lifetime: 600000
+      connection-timeout: 20000
+  
+  jpa:
+    hibernate:
+      ddl-auto: validate  # Não alterar estrutura em produção
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        show_sql: false  # Desabilitar logs SQL em produção
+        format_sql: false
+        jdbc:
+          batch_size: 25
+        order_inserts: true
+        order_updates: true
+    open-in-view: false
+
+# Configurações de segurança para produção
+server:
+  error:
+    include-stacktrace: never
+    include-message: never
+  compression:
+    enabled: true
+  http2:
+    enabled: true
+
+# Logging para produção
+logging:
+  level:
+    com.techflow: INFO
+    org.springframework.security: WARN
+    org.hibernate: WARN
+    org.springframework.web: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/techflow-prod.log
+    max-size: 10MB
+    max-history: 30
+
+# Métricas e monitoramento
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when-authorized

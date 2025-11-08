@@ -1,0 +1,35 @@
+# Configuração para Testes - SQLite em Memória
+spring:
+  datasource:
+    url: jdbc:sqlite::memory:
+    driver-class-name: org.sqlite.JDBC
+    username: ""
+    password: ""
+  
+  jpa:
+    hibernate:
+      ddl-auto: create-drop  # Recria tabelas para cada teste
+    properties:
+      hibernate:
+        dialect: org.hibernate.community.dialect.SQLiteDialect
+        show_sql: false  # Desabilitar logs em testes
+        format_sql: false
+    defer-datasource-initialization: true
+  
+  # Inicialização de dados para testes
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:data-test.sql
+
+# Configurações específicas para testes
+logging:
+  level:
+    com.techflow: INFO
+    org.springframework.security: WARN
+    org.hibernate: WARN
+    org.springframework.web: WARN
+
+# Desabilitar segurança para testes
+security:
+  enabled: false

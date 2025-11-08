@@ -1,0 +1,32 @@
+Dependências necessárias para o projeto Gerador de Currículo:
+
+1. Spring Framework (já configurado no projeto)
+   - spring-webmvc
+   - spring-context
+   - spring-core
+   - spring-beans
+
+2. iText PDF (para geração de PDF)
+   - itextpdf-5.5.13.2.jar
+   - Baixar de: https://github.com/itext/itextpdf/releases
+
+3. SQLite JDBC Driver (para banco de dados)
+   - sqlite-jdbc-3.44.1.0.jar
+   - Baixar de: https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc
+
+4. JSTL (Java Standard Tag Library)
+   - jstl-1.2.jar
+   - Baixar de: https://mvnrepository.com/artifact/javax.servlet/jstl/1.2
+
+5. Servlet API (se não estiver no servidor)
+   - servlet-api.jar
+
+Instruções para adicionar as dependências no NetBeans:
+
+1. Clique com o botão direito no projeto
+2. Vá em Properties
+3. Selecione Libraries
+4. Clique em "Add JAR/Folder"
+5. Adicione os arquivos JAR necessários
+
+Ou copie os JARs para a pasta web/WEB-INF/lib/
